@@ -5,6 +5,8 @@ const ListingSchema = new mongoose.Schema({
 
   description: { type: String },
   category: String,
+  image: String,
+  createdAt: { type: Date, default: new Date() },
   //  price: {typ: str}
 });
 
