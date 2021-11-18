@@ -1,9 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 const errorHandler = require("./middleware/errorHandlerMiddleware");
 require("dotenv").config();
+const listingRoutes = require("./routes/listingRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
+
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(cors());
+
+app.use("/listing", listingRoutes);
+app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello frojbm let it go backend");
