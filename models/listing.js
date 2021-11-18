@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const ListingSchema = new mongoose.Schema({
   name: { type: String, required: true },
-
   description: { type: String },
   category: String,
   image: String,
+  creator: String,
   createdAt: { type: Date, default: new Date() },
   //  price: {typ: str}
 });

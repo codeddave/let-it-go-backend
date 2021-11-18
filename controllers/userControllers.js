@@ -21,7 +21,9 @@ const signUp = async (req, res, next) => {
       { expiresIn: "1hr" }
     );
     return res.status(200).json({ token });
-  } catch (error) {}
+  } catch (error) {
+    return next(new HttpError("Signing up failed, please try again. ", 500));
+  }
 };
 
 const signIn = async (req, res, next) => {};
