@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const ListingSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  title: { type: String, required: true },
   description: { type: String },
+  price: { type: String },
   category: String,
-  image: String,
+  images: { type: [String], default: [] },
   creator: String,
   createdAt: { type: Date, default: new Date() },
   //  price: {typ: str}
