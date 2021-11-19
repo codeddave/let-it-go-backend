@@ -31,22 +31,25 @@ const signIn = async (req, res, next) => {
 
   if (!email || !password)
     return next(new HttpError("please provide email and password", 400));
-
   try {
     const existingUser = await User.findOne({ email });
-
     if (!existingUser) return next(new HttpError("user does not exist", 404));
 
     const passwordsMatch = await existingUser.matchPasswords(password);
-    if (!passwordsMatch) return next(new HttpError("Invalid credentials", 400));
 
+    if (!passwordsMatch) return next(new HttpError("Invalid credentials", 400));
     const token = jwt.sign(
-      { email: existingUser.email, id: existingUser._id },
+      {
+        email: existingUser.email,
+        name: existingUser.name,
+        id: existingUser._id,
+      },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "1hr" }
     );
+    console.log(token);
 
-    return res.status(200).json({ token });
+    res.status(200).json({ token });
   } catch (error) {
     return next(new HttpError("Sign In failed, please try again later", 500));
   }
