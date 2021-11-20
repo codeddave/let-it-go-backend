@@ -3,7 +3,7 @@ const Listing = require("../models/listing");
 const HttpError = require("../models/httpError");
 
 const getListings = async (req, res, next) => {
-  if (!req.userId) return next(new HttpError("User unauthenticated", 400));
+  //if (!req.userId) return next(new HttpError("User unauthenticated", 400));
 
   try {
     const listings = await Listing.find();
@@ -16,7 +16,7 @@ const getListings = async (req, res, next) => {
 };
 
 const createListing = async (req, res, next) => {
-  if (!req.userId) return next(new HttpError("User unauthenticated", 400));
+  //if (!req.userId) return next(new HttpError("User unauthenticated", 400));
 
   const { title, price, description, images, category } = req.body;
 
