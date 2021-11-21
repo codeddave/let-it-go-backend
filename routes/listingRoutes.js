@@ -5,7 +5,7 @@ const router = express.Router();
 const multer = require("multer");
 const upload = multer();
 
-router.get("/", authMiddleware, listingControllers.getListings);
+router.get("/", listingControllers.getListings);
 router.post(
   "/",
   [authMiddleware, upload.single("images")],
