@@ -6,10 +6,6 @@ const multer = require("multer");
 const upload = multer();
 
 router.get("/", listingControllers.getListings);
-router.post(
-  "/",
-  [authMiddleware, upload.single("images")],
-  listingControllers.createListing
-);
+router.post("/", authMiddleware, listingControllers.createListing);
 
 module.exports = router;
