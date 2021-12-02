@@ -16,8 +16,11 @@ app.use(cors());
 app.use("/listings", listingRoutes);
 app.use("/user", userRoutes);
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.send("Hello frojbm let it go backend");
+}); */
+app.use("/", (req, res) => {
+  res.send("Welcome to the Wanderlust Api");
 });
 const PORT = process.env.PORT || 4500;
 
