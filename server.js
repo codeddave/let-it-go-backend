@@ -19,10 +19,10 @@ app.use("/user", userRoutes);
 /* app.get("/", (req, res) => {
   res.send("Hello frojbm let it go backend");
 }); */
+const PORT = process.env.PORT || 4500;
 app.use("/", (req, res) => {
   res.send("Welcome to the Wanderlust Api");
 });
-const PORT = process.env.PORT || 4500;
 
 app.use(errorHandler);
 
