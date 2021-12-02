@@ -1,6 +1,9 @@
 {
   "name": "let-it-go-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.17.5"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
