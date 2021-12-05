@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password "],
   },
+  expoPushNotificationtoken: { type: String },
 });
 
 UserSchema.pre("save", async function (next) {
