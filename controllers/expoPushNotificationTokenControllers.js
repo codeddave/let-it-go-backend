@@ -12,6 +12,7 @@ const savePushNotificationToken = async (req, res, next) => {
     if (!user) return next(new HttpError("No user found", 404));
 
     user.expoPushNotificationtoken = token;
+    await user.save();
   } catch (error) {
     return next(
       new HttpError(
