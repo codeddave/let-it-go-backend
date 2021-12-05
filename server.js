@@ -6,6 +6,7 @@ const errorHandler = require("./middleware/errorHandlerMiddleware");
 require("dotenv").config();
 const listingRoutes = require("./routes/listingRoutes");
 const userRoutes = require("./routes/userRoutes");
+const expoPushNotificationtokenRoutes = require("./routes/expoPushTokenRoutes");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use("/listings", listingRoutes);
 app.use("/user", userRoutes);
+app.use("/expo-push-notification-token", expoPushNotificationtokenRoutes);
 
 /* app.get("/", (req, res) => {
   res.send("Hello frojbm let it go backend");
