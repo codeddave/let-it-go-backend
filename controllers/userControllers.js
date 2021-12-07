@@ -18,7 +18,7 @@ const signUp = async (req, res, next) => {
     const token = jwt.sign(
       { email: user.email, id: user._id },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1hr" }
+      { expiresIn: "100hr" }
     );
     return res.status(200).json({ token });
   } catch (error) {
@@ -45,7 +45,7 @@ const signIn = async (req, res, next) => {
         id: existingUser._id,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "2hr" }
+      { expiresIn: "20hr" }
     );
     console.log(token);
 
