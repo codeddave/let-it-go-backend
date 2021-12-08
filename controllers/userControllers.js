@@ -55,5 +55,10 @@ const signIn = async (req, res, next) => {
   }
 };
 
+const forgotPassword = async (req, res, next) => {
+  const { email } = req.body;
+};
+
 exports.signIn = signIn;
 exports.signUp = signUp;
+exports.forgotPassword = forgotPassword;
