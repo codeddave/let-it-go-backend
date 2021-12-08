@@ -1,7 +1,7 @@
 const HttpError = require("../models/httpError");
 const User = require("../models/user");
-const sendPushnotification = require("../utils/expoPushNotification");
 const expoPushNotification = require("../utils/expoPushNotification");
+
 const savePushNotificationToken = async (req, res, next) => {
   // if (!req.userId) return next(new HttpError("User unauthenticated", 400));
 
