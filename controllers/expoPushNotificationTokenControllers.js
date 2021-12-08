@@ -1,6 +1,7 @@
 const HttpError = require("../models/httpError");
 const User = require("../models/user");
 const sendPushnotification = require("../utils/expoPushNotification");
+const expoPushNotification = require("../utils/expoPushNotification");
 const savePushNotificationToken = async (req, res, next) => {
   // if (!req.userId) return next(new HttpError("User unauthenticated", 400));
 
@@ -25,9 +26,19 @@ const savePushNotificationToken = async (req, res, next) => {
 };
 
 const sendPushNotification = async (req, res, next) => {
-  const { message } = req.body;
+  const { message, creator } = req.body;
+
+  try {
+    const user = await User.findById(creator);
+
+    const pushToken = user.expoPushNotificationtoken;
+    expoPushNotification(message, pushToken);
+    res.status(200).json("Message sent!");
+  } catch (error) {
+    return next(new HttpError("Error sending a notification", 500));
+  }
 };
 
 exports.savePushNotificationToken = savePushNotificationToken;
 
-exports.sendPushNotification = sendPushnotification;
+exports.sendPushNotification = sendPushNotification;
