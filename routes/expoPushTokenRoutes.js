@@ -6,5 +6,9 @@ router.post(
   "/",
   expoPushNotificationtokenControllers.savePushNotificationToken
 );
+router.post(
+  "/send-push-notification",
+  expoPushNotificationtokenControllers.sendPushNotification
+);
 
 module.exports = router;
