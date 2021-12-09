@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const HttpError = require("../models/httpError");
 const jwt = require("jsonwebtoken");
-
+const crypto = require("crypto");
 const signUp = async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -57,6 +57,21 @@ const signIn = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) return next(new HttpError("Email could not be sent ", 404));
+
+    const resetToken = crypto.randomBytes(20).toString("hex");
+
+    user.resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    user.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
+  } catch (error) {}
 };
 
 exports.signIn = signIn;
