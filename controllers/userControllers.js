@@ -2,6 +2,7 @@ const User = require("../models/user");
 const HttpError = require("../models/httpError");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 const signUp = async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -79,6 +80,15 @@ const forgotPassword = async (req, res, next) => {
     <h1> You have requested a password reset</h1>
     <p>Please click on this link to reset your password</p>
     <a href=${resetUrl} clicktracking= off>${resetUrl}</a> `;
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: "Password Reset Request",
+        message,
+      });
+
+      res.status(200).json({ message: "Email Sent" });
+    } catch (error) {}
   } catch (error) {}
 };
 
