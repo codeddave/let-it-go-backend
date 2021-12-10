@@ -88,8 +88,17 @@ const forgotPassword = async (req, res, next) => {
       });
 
       res.status(200).json({ message: "Email Sent" });
-    } catch (error) {}
-  } catch (error) {}
+    } catch (error) {
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+
+      await user.save();
+
+      return next(new HttpError("Email could not be sent, try again.", 500));
+    }
+  } catch (error) {
+    next(error);
+  }
 };
 
 exports.signIn = signIn;
