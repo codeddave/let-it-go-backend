@@ -8,4 +8,21 @@ const senEmail = (options) => {
       pass: process.env.EMAIL_PASSWORD,
     },
   });
+
+  const mailOptions = {
+    from: process.env.EMAIL_FROM,
+    to: options.to,
+    subject: options.subject,
+    html: options.message,
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(info);
+    }
+  });
 };
+
+module.exports = sendEmail;
