@@ -71,6 +71,14 @@ const forgotPassword = async (req, res, next) => {
       .digest("hex");
 
     user.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
+
+    await user.save();
+    const resetUrl = `https://let-it-go.netlify.app/reset-password/${resetToken}`;
+
+    const message = `
+    <h1> You have requested a password reset</h1>
+    <p>Please click on this link to reset your password</p>
+    <a href=${resetUrl} clicktracking= off>${resetUrl}</a> `;
   } catch (error) {}
 };
 
