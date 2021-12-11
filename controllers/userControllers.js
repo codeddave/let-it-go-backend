@@ -115,7 +115,16 @@ const resetPassword = async (req, res, next) => {
     });
 
     if (!user) return next(new HttpError("invalid reset token ", 400));
-  } catch (error) {}
+
+    user.password = password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordToken = undefined;
+    await user.save();
+
+    res.status(200).json({ message: "Reset password succes!" });
+  } catch (error) {
+    next(error);
+  }
 };
 exports.signIn = signIn;
 exports.signUp = signUp;
