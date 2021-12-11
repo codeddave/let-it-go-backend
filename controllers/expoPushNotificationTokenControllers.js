@@ -33,6 +33,11 @@ const sendPushNotification = async (req, res, next) => {
 
     const pushToken = user.expoPushNotificationtoken;
     expoPushNotification(message, pushToken);
+
+    //user.messages = [...user.messages, message];
+
+    await User.updateOne({ creator }, { $push: { messages: message } });
+
     res.status(200).json("Message sent!");
   } catch (error) {
     return next(new HttpError("Error sending a notification", 500));
