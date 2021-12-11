@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide a password "],
   },
   expoPushNotificationtoken: { type: String },
-
+  messages: [String],
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
