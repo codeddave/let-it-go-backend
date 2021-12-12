@@ -40,6 +40,7 @@ const sendPushNotification = async (req, res, next) => {
 
     res.status(200).json("Message sent!");
   } catch (error) {
+    console.log(error);
     return next(new HttpError("Error sending a notification", 500));
   }
 };
