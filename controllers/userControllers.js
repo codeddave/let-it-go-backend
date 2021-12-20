@@ -97,6 +97,7 @@ const forgotPassword = async (req, res, next) => {
       return next(new HttpError("Email could not be sent, try again.", 500));
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
