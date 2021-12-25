@@ -23,7 +23,7 @@ app.use("/expo-push-notification-token", expoPushNotificationtokenRoutes);
 }); */
 const PORT = process.env.PORT || 4500;
 app.use("/", (req, res) => {
-  res.send("Welcome to the Wanderlust Api");
+  res.send("Welcome to the Let It GO Api");
 });
 
 app.use(errorHandler);
